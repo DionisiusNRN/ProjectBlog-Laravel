@@ -58,10 +58,13 @@ class PostController extends Controller
      */
     public function show(string $id) // menampilkan detail / salah satu data saja
     {
-        $post = Post::where('id', '=', $id) // operator default adalah =
-                        ->first(); // mendapatkan data paling pertama dari query diatasnya (single data, dan harus unik where nya)
+        $post = Post::where('id', $id)->first(); // mendapatkan data paling pertama dari query diatasnya (single data, dan harus unik where nya)
+        // $post = Post::find($id); // debugging
+        // dd($post); // debugging
 
         $comments = $post->comments()->limit(2)->get();
+        // dd($post->comments()->toSql());
+
 
         $view_data = [
             "posts"=> $post,
