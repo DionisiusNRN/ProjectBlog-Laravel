@@ -42,12 +42,14 @@ class PostController extends Controller
         $title = $request->input("title");
         $content = $request->input("content");
 
-        Post::insert([ // sesuaikan dgn nama tabelnya
+        // Post::insert([ // insert diganti create
+        Post::create([ // sesuaikan dgn nama tabelnya
             // field apa saja yg ingin diisi
             "title"=> $title,
             "content"=> $content,
-            "created_at" => date("Y-m-d H:i:s"),
-            "updated_at"=> date("Y-m-d H:i:s")
+            // // created dan updated dihapus karena dengan create akan otomatis dibuat
+            // "created_at" => date("Y-m-d H:i:s"),
+            // "updated_at"=> date("Y-m-d H:i:s")
         ]);
 
         return redirect("posts");
@@ -62,13 +64,14 @@ class PostController extends Controller
         // $post = Post::find($id); // debugging
         // dd($post); // debugging
 
-        $comments = $post->comments()->limit(2)->get();
-        // dd($post->comments()->toSql());
+        $comments = $post->comments()->get(); // dd($post->comments()->toSql()); // debugging
 
+        $total_comments = $post->total_comments(); // yang boleh pakai :: adalah static function
 
         $view_data = [
             "posts"=> $post,
             "comments" => $comments,
+            "total_comments"=> $total_comments,
         ] ;
         return view('posts.show', $view_data);
     }
