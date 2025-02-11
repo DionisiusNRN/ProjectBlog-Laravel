@@ -1,15 +1,8 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Blog | Buat Postingan</title>
-    <link href="{{ asset('/bootstrap-5/css/bootstrap.min.css') }}" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-    <script src="{{ asset('/bootstrap-5/js/bootstrap.bundle.min.js') }}" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+@extends('layouts.app')
 
-</head>
-<body>
+@section('title', 'Buat Postingan')
+
+@section('content')
     <h1>Buat postingan baru</h1>
     <form method="POST" action="{{ url('posts') }}" class="form-control">
         @csrf
@@ -23,5 +16,4 @@
         </div>
         <button type="submit" class="btn btn-primary">Simpan</button>
     </form>
-</body>
-</html>
+@endsection
